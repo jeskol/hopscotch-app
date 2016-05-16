@@ -37,6 +37,7 @@ def connect_db():
 @app.before_request
 def before_request():
     g.db = connect_db()
+    g.cursor = g.db.cursor()
 
 @app.teardown_request
 def teardown_request(exception):
@@ -44,3 +45,14 @@ def teardown_request(exception):
     if db is not None:
         db.close()
 
+@app.route('/', methods=['GET', 'POST'])
+def test():
+    g.cursor.execute('select * from tester')
+    output = {'data': []}
+    for rId, name, addr in g.cursor:
+        output['data'].append({'id': rId, 'name': name, 'address': addr})
+    return render_template('test.html', output=output)
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')

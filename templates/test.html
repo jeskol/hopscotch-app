@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block body %}
+  <ul class=entries>
+  {% for entry in output.data %}
+    <li>
+        <h2>{{ entry.name }}</h2>
+        <p>Lives at {{ entry.address }}</p>
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+  </ul>
+{% endblock %}
