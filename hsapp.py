@@ -23,8 +23,9 @@ app.config.from_envvar('HSAPP_SETTINGS', silent=False)
 # This may not work with mysql
 def init_db():
     with closing(connect_db()) as db:
-        with app.open_resource('schema.sql', mode='r') as f:
-            db.cursor().execute(f.read())
+        for filename in ['bands.sql', 'users.sql', 'ratings.sql']:
+            with app.open_resource(filename, mode='r') as f:
+                db.cursor().execute(f.read())
         db.commit()
 
 def connect_db():

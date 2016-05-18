@@ -1,22 +1,9 @@
 # hopscotch-app
 An app for my friends to keep track of bands at Hopscotch
 
-Bands:
- - ID
- - Name
- - Location
- - Datetime
- - Link
- - Description
-
-Users:
- - ID
- - Username
- - Password
-
-Ratings:
- - ID
- - Type (1st, 2nd, Decision)
- - Rating
- - Band-ID
- - User-ID
+Setting up the DB
+=================
+1. Change directory to the project base
+2. Open the python shell
+3. import hsapp.py
+4. hsapp.init_db()
